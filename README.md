@@ -5,7 +5,7 @@ A GitHub Copilot [agent skill](https://docs.github.com/en/copilot/concepts/agent
 Give it an architecture as a **diagram attachment**, **document**, **Infrastructure-as-Code**, **URL**, or plain **description**, and it produces:
 
 - A component inventory (so you can correct any misreading)
-- A **principles compliance table** — ten house principles (P1–P10: same-cloud/same-region co-location, multi-AZ as standard, async across boundaries, right-fit integration, evidence-based resiliency, security baseline, operability, cost-aware data flow), each rated Compliant / Justified deviation / Violation
+- A **principles compliance table** — ten house principles (P1–P10: same-cloud/same-region co-location, multi-AZ as standard, async across boundaries, right-fit integration, evidence-based resiliency, security baseline, operability, cost-aware data flow), each rated Compliant / Justified deviation / Violation. Supply your own organization's architecture principles (doc, URL, or in the prompt) and they're assessed alongside as ORG-1, ORG-2, … — org principles override house defaults where they conflict
 - **NFR compliance check** — stated or inferred non-functional requirements traced through the design
 - **Co-location & latency analysis** — flags cross-cloud app↔database splits, cross-region synchronous calls, and poor-fit integrations
 - A pillar-by-pillar scorecard

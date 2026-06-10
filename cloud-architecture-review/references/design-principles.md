@@ -15,6 +15,16 @@ The house principles every architecture is evaluated against, in addition to the
 | **P9** | **Operable by default** — IaC, pipeline-deployed, monitored with actionable alerts; no console-managed production. | Medium |
 | **P10** | **Cost-aware data flow** — high-volume paths avoid avoidable transfer charges (NAT for S3-class traffic, missing CDN, chatty cross-AZ/region flows); estimates quantified per cost-gravity reference. | Medium |
 
+## Organization-supplied principles
+
+When the user provides their own architecture principles (document, URL, or in the prompt):
+
+1. Extract them as a numbered list (**ORG-1, ORG-2, …**), restating each as a testable assertion. If a principle is too abstract to test ("be cloud smart"), say so and ask what it means operationally rather than scoring it loosely.
+2. Assess each against the inventory exactly like P1–P10 and add the rows to the Principles Compliance table.
+3. Assign each a default severity by analogy to the closest house principle; where the org principle is stricter, use the stricter reading.
+4. **Conflicts**: if an org principle contradicts a house principle (e.g., org mandates multi-region active-active for all tier-1 systems), the org principle wins for that review — note the conflict in the table and suppress the contradicted house default rather than double-flagging.
+5. Org principles are assessment guidance, not the user's design justifying itself — a design document asserting "we follow our principles" is not evidence; the inventory is.
+
 ## How to apply
 
 1. After the pillar assessment (Step 6), walk P1–P10 against the inventory and record each as **Compliant / Deviation (justified) / Violation / Not applicable**.

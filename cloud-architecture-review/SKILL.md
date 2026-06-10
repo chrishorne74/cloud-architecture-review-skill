@@ -15,6 +15,8 @@ Accept the architecture in whichever form the user provides:
 - **URL** — fetch the page and extract the architecture description, diagrams, and any stated requirements. Follow linked pages if they contain relevant detail.
 - **Description** — a written explanation in the chat.
 
+Also accept **architecture principles** as a supporting input: if the user supplies their organization's architecture/design principles (a document, a URL, or listed in the prompt), treat them as assessment guidance alongside the built-in principles — see "Organization-supplied principles" in [references/design-principles.md](references/design-principles.md).
+
 If the input is ambiguous or incomplete, state your assumptions explicitly rather than blocking — but list the most important missing information as questions at the end of the review.
 
 ## Step 2: Build a component inventory
@@ -113,6 +115,8 @@ For every pillar in the selected framework, evaluate the architecture and record
 Also record **strengths** — things the architecture does well. A review that only lists faults is less credible and less useful.
 
 After the pillar assessment, evaluate the architecture against the ten house principles in [references/design-principles.md](references/design-principles.md) (P1–P10: co-location, multi-AZ standard, async-across-boundaries, right-fit integration, evidence-based resiliency, security baseline, operability, cost-aware data flow). Record each as Compliant / Deviation (justified) / Violation / N/A, and cite principle IDs in findings.
+
+If the user supplied their organization's architecture principles, assess those too (IDs ORG-1, ORG-2, …) in the same table, per the rules in the design-principles reference.
 
 Ground every finding in what is actually present (or demonstrably absent) in the supplied architecture. Never invent components. If something might exist but isn't shown, phrase it as a verification question, not a finding.
 
