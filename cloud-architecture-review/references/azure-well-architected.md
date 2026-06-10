@@ -9,7 +9,7 @@ Key questions:
 - Defined SLO/RTO/RPO? Composite SLA of chained services calculated?
 - Azure Backup / geo-redundant storage (GRS/GZRS) where data loss is unacceptable?
 - Health probes on Load Balancer/Application Gateway/Front Door? Autoscale rules configured?
-- DR: paired region strategy, Azure Site Recovery, or active-active with Front Door/Traffic Manager?
+- DR: zone-redundant deployment + tested backups is the standard posture; paired-region/Site Recovery/active-active only where stated tolerances require surviving region loss.
 
 Common gaps: single-instance VMs with no availability set/zone; LRS storage for critical data; no tested failover; App Service on a single instance; AKS with a single node pool and no zone spread.
 
@@ -59,3 +59,4 @@ Common gaps: no caching tier; synchronous coupling between services; single-regi
 - No hub-spoke / firewall in an enterprise multi-workload diagram → Security, Medium-High.
 - Connection strings/secrets shown flowing to app config → Security, High.
 - No Front Door/Traffic Manager in a multi-region diagram → Reliability/Performance, Medium.
+- Multi-region deployment with no stated requirement driving it → over-engineering, check justification.

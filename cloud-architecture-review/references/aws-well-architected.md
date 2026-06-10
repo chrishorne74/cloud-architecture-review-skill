@@ -30,9 +30,9 @@ Key questions:
 - Defined RTO/RPO? Backups (AWS Backup) tested via restore?
 - Auto Scaling / self-healing for compute? Health checks on load balancers?
 - Service quotas considered? Throttling/retry/backoff in service-to-service calls?
-- DR strategy matching business need: backup-restore, pilot light, warm standby, multi-region active-active?
+- DR: multi-AZ + tested in-region backups is the standard posture; cross-region patterns (pilot light, warm standby, active-active) only where stated tolerances require surviving region loss.
 
-Common gaps: single-AZ RDS; no backups or untested backups; single NAT gateway as SPOF; no autoscaling; synchronous tight coupling with no queue/buffer; no DR plan; DNS/failover not configured.
+Common gaps: single-AZ RDS; no backups or untested backups; single NAT gateway as SPOF; no autoscaling; synchronous tight coupling with no queue/buffer; DNS/failover not configured; unjustified multi-region complexity.
 
 ## 4. Performance Efficiency
 
@@ -67,6 +67,6 @@ Common gaps: heavily underutilized fleets; no archival/expiry of cold data. Trea
 
 - Public subnet containing app/database tiers → Security, Critical/High.
 - No VPC endpoints with heavy S3/DynamoDB traffic through NAT → Cost, Medium.
-- Single region with no DR statement → Reliability, severity depends on workload criticality.
+- Single region with multi-AZ and tested backups → standard posture, not a finding; note region loss as accepted residual risk.
 - IGW directly attached to instances rather than via ALB/NLB → Security/Reliability.
 - Absence of CloudWatch/CloudTrail/X-Ray in the diagram → flag as verification question.

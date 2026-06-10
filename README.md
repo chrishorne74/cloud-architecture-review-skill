@@ -53,6 +53,7 @@ In Copilot Chat (agent mode) or the Copilot CLI:
 ## Design choices baked into the skill
 
 - **Strong co-location defaults**: workloads and their databases belong in the same cloud and region; cross-boundary synchronous dependencies are findings unless explicitly justified (DR, data residency, edge).
+- **Resiliency = availability + DR, with multi-AZ as the standard for both**: single-AZ production is a finding; cross-region or cross-cloud DR is non-standard and needs explicit justification (regulation, RTO/RPO surviving region loss, residency) — unjustified multi-region is flagged as over-engineering.
 - **Evidence over vibes**: every finding ties to a named component or a demonstrable absence; unknowns become open questions, not assumed findings.
 - **Current guidance**: the skill instructs the agent to verify time-sensitive recommendations and deprecated services via web search rather than relying on model memory.
 - **Strengths included**: reviews report what the architecture gets right, not just faults.

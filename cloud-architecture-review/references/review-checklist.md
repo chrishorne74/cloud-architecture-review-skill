@@ -20,8 +20,9 @@ Provider-agnostic checks to apply on every review, alongside the provider framew
 ## Resiliency = Availability + DR (assess separately)
 
 - [ ] **Availability**: every production tier is multi-AZ (the standard baseline) — compute, database, cache, LB, NAT. Single-AZ stateful = High, stateless = Medium.
-- [ ] **DR**: a distinct answer exists for region loss, matched to RTO/RPO (backup-restore → pilot light → warm standby → active-active). Multi-AZ is never the DR answer.
-- [ ] The design doesn't conflate the two, and doesn't gold-plate (multi-region with no requirement driving it).
+- [ ] **DR**: multi-AZ + tested in-region backups is the standard posture. Don't flag missing cross-region DR by default.
+- [ ] **Cross-region/cross-cloud DR is non-standard**: present only with stated justification (regulation, RTO/RPO surviving region loss, residency). Unjustified multi-region = over-engineering finding; required-but-absent (per stated tolerances) = gap.
+- [ ] Where the standard posture applies, region loss is recorded as accepted residual risk, not silently ignored.
 
 ## Single points of failure
 

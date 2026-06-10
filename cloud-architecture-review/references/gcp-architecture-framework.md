@@ -27,9 +27,9 @@ Key questions:
 - Regional vs zonal resources: regional MIGs, regional GKE clusters, multi-zone Cloud SQL (HA configuration)?
 - Defined RTO/RPO; backups (Cloud SQL automated backups, GCS versioning) tested?
 - Global vs regional load balancing matched to footprint; health checks configured?
-- DR across regions where criticality demands it?
+- DR: regional (multi-zone) resources + tested backups is the standard posture; cross-region DR only where stated tolerances require surviving region loss.
 
-Common gaps: zonal GKE/SQL for production; single-region with no DR statement; no tested restores; Memorystore basic tier (no replication) for critical caching.
+Common gaps: zonal GKE/SQL for production; no tested restores; Memorystore basic tier (no replication) for critical caching; unjustified multi-region complexity.
 
 ## 4. Cost Optimization
 
