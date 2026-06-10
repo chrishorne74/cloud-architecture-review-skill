@@ -112,6 +112,8 @@ For every pillar in the selected framework, evaluate the architecture and record
 
 Also record **strengths** — things the architecture does well. A review that only lists faults is less credible and less useful.
 
+After the pillar assessment, evaluate the architecture against the ten house principles in [references/design-principles.md](references/design-principles.md) (P1–P10: co-location, multi-AZ standard, async-across-boundaries, right-fit integration, evidence-based resiliency, security baseline, operability, cost-aware data flow). Record each as Compliant / Deviation (justified) / Violation / N/A, and cite principle IDs in findings.
+
 Ground every finding in what is actually present (or demonstrably absent) in the supplied architecture. Never invent components. If something might exist but isn't shown, phrase it as a verification question, not a finding.
 
 ## Step 7: Produce the report
@@ -137,6 +139,11 @@ Include co-location and latency violations here and as findings.
 | Pillar | Rating | Critical | High | Medium | Low |
 |---|---|---|---|---|---|
 Rating scale: Strong / Adequate / Needs Attention / At Risk
+
+## Principles Compliance
+| ID | Principle | Status | Evidence / Justification |
+|---|---|---|---|
+One row per principle (P1–P10), including compliant ones. Status: Compliant / Deviation (justified) / Violation / N/A.
 
 ## Strengths
 What the architecture gets right, with pillar references.

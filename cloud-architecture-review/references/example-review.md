@@ -43,6 +43,21 @@ Assumptions: "instant checkout" read as p95 < 500ms end-to-end; product DB is on
 | Operational Excellence | Adequate | 0 | 0 | 1 | 0 |
 | Sustainability | Adequate | 0 | 0 | 0 | 0 |
 
+## Principles Compliance
+
+| ID | Principle | Status | Evidence / Justification |
+|---|---|---|---|
+| P1 | Same cloud | **Violation** | orders (AWS) ↔ Azure SQL; "data team standardized on Azure" is organizational, not an architectural justification |
+| P2 | Same region | Compliant | Both Sydney — but P1 violation still applies |
+| P3 | Multi-AZ standard | **Violation** | Single-node Redis; ECS AZ spread unverified; Azure SQL tier unknown |
+| P4 | Cross-region/cloud non-standard | **Violation** | Cross-cloud dependency with no stated justification |
+| P5 | Async across boundaries | **Violation** | Cross-cloud DB call is synchronous on the checkout path |
+| P6 | Right-fit integration | Deviation (partial) | Direct DB integration across team/cloud boundary instead of an API or replicated read store |
+| P7 | Evidence-based resiliency | **Violation** | No backup/restore evidence for any stateful component |
+| P8 | Security baseline | **Violation** | Public subnets, no WAF, secret handling unverified |
+| P9 | Operable by default | Deviation (partial) | IaC + pipeline present; monitoring absent |
+| P10 | Cost-aware data flow | **Violation** | Azure egress per product read; S3 egress without CDN |
+
 ## Strengths
 
 - Fargate removes host patching burden (Security, Ops Excellence) and scales to demand (Cost).
