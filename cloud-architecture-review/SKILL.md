@@ -11,7 +11,7 @@ You are acting as a senior cloud architect performing a Well-Architected review.
 
 Accept the architecture in whichever form the user provides:
 
-- **Attachment** — architecture diagram (PNG/JPG/SVG), document (PDF/Word/Markdown), or Infrastructure-as-Code (Terraform, CloudFormation, Bicep, ARM, Pulumi, CDK). Read it carefully. For diagrams, identify every component, label, and connection. For IaC, treat the code as the source of truth for the architecture.
+- **Attachment** — architecture diagram (PNG/JPG/SVG), document (PDF/Word/Markdown), or Infrastructure-as-Code (Terraform, CloudFormation, Bicep, ARM, Pulumi, CDK). Read it carefully. For diagrams, identify every component, label, and connection. For IaC, treat the code as the source of truth for the architecture. **For Terraform specifically**, follow [references/terraform-review.md](references/terraform-review.md) — it lists the resource-level signals to extract and instructs running `checkov`/`tfsec` when available.
 - **URL** — fetch the page and extract the architecture description, diagrams, and any stated requirements. Follow linked pages if they contain relevant detail.
 - **Description** — a written explanation in the chat.
 
@@ -46,6 +46,8 @@ Apply these as **strong defaults** — deviations need an explicit, stated justi
 - **Same region:** chatty, synchronous dependencies (app ↔ database, app ↔ cache, service ↔ service on the request path) belong in the same region. Cross-region synchronous calls add tens of milliseconds per hop and multiply under N+1 query patterns — call out the estimated impact.
 - **Cross-region/cloud is acceptable when justified:** async replication for DR, event/batch integration, data residency mandates, edge delivery via CDN. Verify the integration is genuinely async/buffered (queue, replication, scheduled transfer) — a "DR" link that is actually a synchronous dependency is a finding.
 
+When a flagged path carries meaningful volume, quantify it: use [references/cost-gravity.md](references/cost-gravity.md) to estimate the data transfer cost per month and put the number in the finding.
+
 ### Integration fit
 
 Scrutinize every integration between components and flag poor fits:
@@ -71,6 +73,8 @@ Match the framework to the provider:
 Read the matching reference file before assessing. Also apply the cross-cutting checklist in [references/review-checklist.md](references/review-checklist.md).
 
 **Regulatory overlays:** if the workload belongs to an APRA-regulated entity (Australian bank/ADI, insurer, or super fund) or the user mentions APRA/CPS 230/CPS 234, additionally apply [references/apra-cps230-cps234.md](references/apra-cps230-cps234.md) and include its Regulatory Compliance section in the report.
+
+**Platform-scale inputs:** if the input is a landing zone, multi-account/multi-subscription design, or cloud foundation (rather than a single workload), additionally apply [references/landing-zone-review.md](references/landing-zone-review.md), including its FinOps maturity rating (Crawl/Walk/Run).
 
 ## Step 5: Research current best practices
 
@@ -143,3 +147,5 @@ Framework documents and any web sources cited.
 ```
 
 Keep the report proportionate: a simple 5-component architecture warrants a shorter review than an enterprise landing zone. Do not pad pillars that have no meaningful findings — say "No significant findings" and move on.
+
+Before writing the report, read [references/example-review.md](references/example-review.md) and match its tone, severity calibration, and level of specificity — particularly how findings name components, quantify latency/cost with stated assumptions, and route unknowns to Open Questions instead of asserting them.

@@ -11,6 +11,8 @@ Give it an architecture as a **diagram attachment**, **document**, **Infrastruct
 - Severity-rated findings (Critical/High/Medium/Low) with specific, effort-rated recommendations
 - A prioritized action plan and open questions
 
+Additional lenses applied automatically when relevant: **Terraform-aware review** (resource-level signals, runs checkov/tfsec if installed), **data-transfer cost estimates** (per-TB numbers behind egress/cross-boundary findings), and a **landing zone overlay** with FinOps maturity rating (Crawl/Walk/Run) for platform-scale designs.
+
 ## Install
 
 ### Per repository (shared with your team)
@@ -24,7 +26,12 @@ Copy the skill folder into the repo:
     ├── aws-well-architected.md
     ├── azure-well-architected.md
     ├── gcp-architecture-framework.md
-    └── review-checklist.md
+    ├── review-checklist.md
+    ├── apra-cps230-cps234.md      # APRA regulatory overlay
+    ├── terraform-review.md        # IaC extraction signals + checkov/tfsec
+    ├── cost-gravity.md            # indicative data-transfer cost table
+    ├── landing-zone-review.md     # platform-scale + FinOps maturity overlay
+    └── example-review.md          # worked example for calibration
 ```
 
 ### Personal (all your projects)
