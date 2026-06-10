@@ -17,6 +17,12 @@ Provider-agnostic checks to apply on every review, alongside the provider framew
 - [ ] Latency-sensitive paths have no avoidable network-boundary hops; estimate added latency per hop when flagging.
 - [ ] Cross-boundary data transfer costs (egress, cross-AZ/region) considered for high-volume flows.
 
+## Resiliency = Availability + DR (assess separately)
+
+- [ ] **Availability**: every production tier is multi-AZ (the standard baseline) — compute, database, cache, LB, NAT. Single-AZ stateful = High, stateless = Medium.
+- [ ] **DR**: a distinct answer exists for region loss, matched to RTO/RPO (backup-restore → pilot light → warm standby → active-active). Multi-AZ is never the DR answer.
+- [ ] The design doesn't conflate the two, and doesn't gold-plate (multi-region with no requirement driving it).
+
 ## Single points of failure
 
 Walk the diagram and ask "what happens if this box disappears?" for every component. Classic SPOFs:

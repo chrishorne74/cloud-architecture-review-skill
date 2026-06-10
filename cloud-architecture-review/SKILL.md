@@ -48,6 +48,15 @@ Apply these as **strong defaults** — deviations need an explicit, stated justi
 
 When a flagged path carries meaningful volume, quantify it: use [references/cost-gravity.md](references/cost-gravity.md) to estimate the data transfer cost per month and put the number in the finding.
 
+### Resiliency model
+
+Assess resiliency as two distinct concerns — never blur them, and report each separately:
+
+- **Availability (HA)** — surviving component and zone failures inside a region with no/minimal interruption. **Multi-AZ is the standard approach**: every production tier (compute, database, cache, load balancing, NAT) is expected to be zone-redundant by default. Single-AZ anything in production is a finding (High for stateful tiers, Medium for stateless) unless the design explicitly accepts the risk. Multi-AZ is the baseline, not an upgrade — do not credit a design as "highly available" merely for being multi-AZ; that is table stakes.
+- **Disaster recovery (DR)** — surviving the loss of a whole region (or the provider's regional service), driven by stated RTO/RPO. DR is the tier *above* multi-AZ: cross-region backups at minimum, then pilot light / warm standby / active-active as tolerance levels tighten. Multi-AZ does **not** satisfy a DR requirement, and multi-region active-active is not the default answer — match the DR pattern to the stated (or assumed) RTO/RPO and say which pattern the design implements.
+
+A design that conflates the two ("we're multi-AZ so we're covered for DR", or jumps to multi-region with no stated requirement) gets a finding either way: the first understates risk, the second overstates cost and complexity.
+
 ### Integration fit
 
 Scrutinize every integration between components and flag poor fits:
@@ -135,6 +144,7 @@ What the architecture gets right, with pillar references.
 ## Findings & Recommendations
 Grouped by pillar, ordered by severity. Each finding in the Step 6 format.
 Include a "Latency & Integration Fit" group for Step 3 findings that don't map cleanly to a pillar.
+Within Reliability, separate **Availability** and **DR** findings (per the Step 3 resiliency model).
 
 ## Prioritized Action Plan
 A numbered list ordered by severity then effort — quick critical/high wins first.
