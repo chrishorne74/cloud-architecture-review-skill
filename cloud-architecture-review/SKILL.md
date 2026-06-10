@@ -70,6 +70,8 @@ Match the framework to the provider:
 
 Read the matching reference file before assessing. Also apply the cross-cutting checklist in [references/review-checklist.md](references/review-checklist.md).
 
+**Regulatory overlays:** if the workload belongs to an APRA-regulated entity (Australian bank/ADI, insurer, or super fund) or the user mentions APRA/CPS 230/CPS 234, additionally apply [references/apra-cps230-cps234.md](references/apra-cps230-cps234.md) and include its Regulatory Compliance section in the report.
+
 ## Step 5: Research current best practices
 
 Use web search to verify guidance that changes over time — do not rely on memory for:

@@ -1,6 +1,6 @@
 # Cloud Architecture Review — GitHub Copilot Agent Skill
 
-A GitHub Copilot [agent skill](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills) that reviews cloud architectures against the **AWS, Azure, and GCP Well-Architected Frameworks**, cloud best practices, and industry guidelines (CIS, NIST, Zero Trust, PCI/HIPAA/GDPR where relevant).
+A GitHub Copilot [agent skill](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills) that reviews cloud architectures against the **AWS, Azure, and GCP Well-Architected Frameworks**, cloud best practices, and industry guidelines (CIS, NIST, Zero Trust, PCI/HIPAA/GDPR where relevant). For APRA-regulated entities (Australian banks, insurers, super funds) it also checks the design against **CPS 230** (operational risk: tolerance levels, BCP, service provider/exit strategy, tech health) and **CPS 234** (information security: classification, controls, detection supporting 72-hour notification).
 
 Give it an architecture as a **diagram attachment**, **document**, **Infrastructure-as-Code**, **URL**, or plain **description**, and it produces:
 

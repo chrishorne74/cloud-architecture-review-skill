@@ -44,6 +44,7 @@ Walk the diagram and ask "what happens if this box disappears?" for every compon
 | EU personal data | GDPR (data residency, minimization, erasure) |
 | Service org reporting | SOC 2 trust criteria |
 | InfoSec management | ISO 27001 |
+| Australian banks/insurers/super (APRA-regulated) | CPS 230 + CPS 234 — see [apra-cps230-cps234.md](apra-cps230-cps234.md) |
 
 Only invoke these when the workload context makes them relevant; cite the specific control area, not just the framework name.
 
